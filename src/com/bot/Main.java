@@ -79,7 +79,7 @@ public class Main {
         });
 
         JButton button2 = new JButton("очистить");
-        button2.setBounds(2,250,160,40);
+        button2.setBounds(2,300,160,40);
         butPanel.add(button2);
         button2.addActionListener(new ActionListener() {
             @Override
@@ -98,15 +98,37 @@ public class Main {
 
 
         JButton button3 = new JButton("Решить задачу");
-        button3.setBounds(2,150,160,40);
+        button3.setBounds(2,250,160,40);
         butPanel.add(button3);
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("выполнено");
+                for (int i=0;i<points.size();i++){//n
+                    points.get(i); //arr[i]
+                }
             }
         });
 
+        JButton button4 = new JButton("Считать из файла");
+        button4.setBounds(2,200,160,40);
+        butPanel.add(button4);
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("считано");
+            }
+        });
+
+        JButton button5 = new JButton("Записать в файл");
+        button5.setBounds(2,150,160,40);
+        butPanel.add(button5);
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("записано");
+            }
+        });
 
 
 
