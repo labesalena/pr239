@@ -23,6 +23,7 @@ public class Main {
 
 //
 
+
         int max_kolvo = -1;
         int maxi = -1;
         int maxj = -1;
