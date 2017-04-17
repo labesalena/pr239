@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     private static ArrayList<Point> points = new ArrayList<Point>();
@@ -20,7 +17,6 @@ public class Main {
         butPanel.setPreferredSize(new Dimension(250,700));
         final Panel pointpane   = new Panel();
         pointpane.setLayout(null);
-        //pointpane.setPreferredSize(new Dimension(350,700));
 
 	    JLabel addPointwithCoords = new JLabel("Добавить точку по координатам");
 	    addPointwithCoords.setBounds(2,2,300,25);
@@ -81,7 +77,10 @@ public class Main {
 
             }
         });
+
         JButton button2 = new JButton("очистить");
+        button2.setBounds(2,250,160,40);
+        butPanel.add(button2);
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,10 +95,24 @@ public class Main {
                 }
             }
         });
-        button2.setBounds(2,150,160,40);
-        butPanel.add(button2);
+
+
+        JButton button3 = new JButton("Решить задачу");
+        button3.setBounds(2,150,160,40);
+        butPanel.add(button3);
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("выполнено");
+            }
+        });
+
+
+
+
         panel.add(pointpane,BorderLayout.CENTER);
         panel.add(butPanel,BorderLayout.EAST);
+
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);

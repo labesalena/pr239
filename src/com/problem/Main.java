@@ -1,12 +1,9 @@
+package com.problem;
 import java.util.ArrayList;
-
-/**
- * Created by ilya on 09.03.2017.
- */
 public class Main {
 
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
 
         ArrayList<Point> list;
         list = new Reader().read();
@@ -14,17 +11,17 @@ public class Main {
 
         int l = list.size();
 
-/*
+//
 
-        System.out.println(list.size());
-        for (int i = 0; i < l; i++) {
-            System.out.println(list.get(i));
-        }
-
-
+//        System.out.println(list.size());
+   //     for (int i = 0; i < l; i++) {
+   //         System.out.println(list.get(i));
+     /   }
 
 
-*/
+
+
+//
 
         int max_kolvo = -1;
         int maxi = -1;
@@ -62,3 +59,5 @@ public class Main {
         }
     }
 }
+*/
+    }

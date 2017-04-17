@@ -1,5 +1,4 @@
 package com.bot;
-
 import javax.swing.*;
 import java.awt.*;
 

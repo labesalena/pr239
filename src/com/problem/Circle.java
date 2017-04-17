@@ -1,3 +1,7 @@
+package com.problem;
+
+import com.bot.Point;
+
 /**
  * Created by ilya on 09.03.2017.
  */

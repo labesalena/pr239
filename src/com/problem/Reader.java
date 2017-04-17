@@ -1,5 +1,9 @@
+package com.problem;
+import com.bot.Point;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Reader {
@@ -19,8 +23,10 @@ public class Reader {
 
     ArrayList<Point> read(int n) {
         ArrayList<Point> list = new ArrayList<Point>();
+
+        Random r = new Random();
         for (int i = 0; i < n; i++){
-            list.add(new Point(Math.random(), Math.random()));
+            list.add(new Point(r.nextInt(600),r.nextInt(600)));
         }
         return list;
     }
