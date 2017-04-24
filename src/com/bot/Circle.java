@@ -1,16 +1,21 @@
-package com.problem;
+package com.bot;
 
 import com.bot.Point;
+import com.problem.Vector;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by ilya on 09.03.2017.
  */
-public class Circle {
+public class Circle extends JPanel{
     int cx;
     int cy;
     int r;
 
-     Circle(Point a1, Point  a2, Point a3) {
+
+      public Circle(Point a1, Point a2, Point a3) {
          int  s1, s2, s3;
          int area;
          int p;
@@ -46,6 +51,12 @@ public class Circle {
         }
     }
 
+    public Circle(int cx,      int cy,       int r) {
+          this.cx = cx;
+          this.cy = cy;
+          this.r = r;
+    }
+
     public boolean point_in_side(Point a){
         if(((this.cx - a.x)*(this.cx - a.x) +(this.cy - a.y)*(this.cy - a.y)- this.r*this.r)<=0){
             return true;
@@ -53,6 +64,29 @@ public class Circle {
         else{
             return false;
         }
+    }
+
+    static public boolean isAccesible(Point a1, Point a2, Point a3){
+        int  s1, s2, s3;
+        int area;
+        int p;
+        s1 = (int) Math.sqrt((a1.x - a2.x) * (a1.x - a2.x) + (a1.y - a2.y) * (a1.y - a2.y));
+        s2 = (int) Math.sqrt((a3.x - a2.x) * (a3.x - a2.x) + (a3.y - a2.y) * (a3.y - a2.y));
+        s3 = (int) Math.sqrt((a1.x - a3.x) * (a1.x - a3.x) + (a1.y - a3.y) * (a1.y - a3.y));
+        p = (s1 + s2 + s3) / 2;
+        area = (int) Math.sqrt(p * (p - s1) * (p - s2) * (p - s3));
+        if (area == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public void paint(Graphics g){
+        g.setColor(Color.red);
+        g.drawOval(cx+r, cy+r, r ,r);
+
     }
 
     @Override
