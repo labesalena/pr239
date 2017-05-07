@@ -1,3 +1,5 @@
+try (Scanner fin = new Scanner(new File("in.txt"));
+        PrintStream fout = new PrintStream(new File("out.txt"))) {
 package com.bot;
 
 import javax.swing.*;
@@ -45,7 +47,7 @@ public class Main {
         butPanel.add(n);
 
         // рисование тестового круга
-     /*   Circle c = new Circle(200,100,200);
+       /*Circle c = new Circle(200,100,200);
         c.setBounds(0,0,1200,1200);
         pointpane.add(c);
         pointpane.repaint();
@@ -110,9 +112,8 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTextField t = new JTextField(solve());
-                t.setBounds(0,0,100,100);
-                butPanel.add(t);s
-
+                t.setBounds(20,500,200,100);
+                butPanel.add(t);
 
             }
         });
@@ -211,3 +212,6 @@ public class Main {
 
 
 }
+} catch (FileNotFoundException e) {
+        e.printStackTrace();
+        }
