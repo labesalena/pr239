@@ -84,6 +84,7 @@ public class Main{
         final JTextField n = new JTextField();
         n.setBounds(35, 120, 25, 25);
         butPanel.add(n);
+        
 
         JButton button_add_one = new JButton("Добавить");
         button_add_one.setBounds(2, 50, 160, 40);
