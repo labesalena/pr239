@@ -1,10 +1,8 @@
-package com.bot;
+package com;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Евросеть on 10.04.2017.
- */
+
 public class Panel extends JPanel {
     public void paintComponent(Graphics g){
         g.setColor(Color.white);

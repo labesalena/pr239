@@ -1,4 +1,4 @@
-package com.problem;
+package com;
 /**
  * Created by ilya on 09.03.2017.
  */

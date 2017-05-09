@@ -1,6 +1,4 @@
-try (Scanner fin = new Scanner(new File("in.txt"));
-        PrintStream fout = new PrintStream(new File("out.txt"))) {
-package com.bot;
+package com;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +6,46 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Main {
+public class Main{
     private static ArrayList<Point> points = new ArrayList<Point>();
+    static Circle c_ans = new Circle(0,0,0);
     static Panel pointpane = new Panel();
+
+    public static void clear_pointpane() {
+        pointpane.removeAll();
+        pointpane.repaint();
+        pointpane.revalidate();
+    }
+
+    public static void paint_pointpane() {
+        clear_pointpane();
+        for (int i = 0; i < points.size(); i++) {
+            Point b = points.get(i);
+            b.setBounds(b.x, b.y, b.x + 3, b.y + 3);
+            pointpane.add(b);
+
+            JLabel p_label = new JLabel("(" + b.x + ":" + b.y + ")");
+            p_label.setBounds(b.x, b.y, 100, 25);
+            pointpane.add(p_label);
+        }
+        if (c_ans.r > 0) {
+            Point center = new Point(c_ans.cx, c_ans.cy);
+            center.setBounds(center.x, center.y, center.x + 3, center.y + 3);
+            pointpane.add(center);
+
+            JLabel c_label = new JLabel("circle (" + center.x + ":" + center.y + ")");
+            c_label.setBounds(center.x, center.y, 100, 25);
+            pointpane.add(c_label);
+
+            c_ans.setBounds(c_ans.cx - c_ans.r, c_ans.cy - c_ans.r, 2 * c_ans.r, 2 * c_ans.r);
+            pointpane.add(c_ans);
+        }
+        pointpane.repaint();
+        pointpane.revalidate();
+
+
+    }
+
     public static void createGUI() {
         final JFrame frame = new JFrame("Testframe");
         frame.setPreferredSize(new Dimension(700, 700));
@@ -24,116 +59,116 @@ public class Main {
         JLabel addPointwithCoords = new JLabel("Добавить точку по координатам");
         addPointwithCoords.setBounds(2, 2, 300, 25);
         butPanel.add(addPointwithCoords);
-        JLabel addRandomPoints = new JLabel("Добавить рандомное количество точек");
-        addRandomPoints.setBounds(2, 50, 300, 25);
-        butPanel.add(addRandomPoints);
+
         JLabel X = new JLabel("X:");
         X.setBounds(2, 25, 15, 25);
         butPanel.add(X);
         JLabel Y = new JLabel("Y:");
         Y.setBounds(45, 25, 15, 25);
         butPanel.add(Y);
-        JLabel N = new JLabel("NUM:");
-        N.setBounds(2, 70, 30, 25);
-        butPanel.add(N);
         final JTextField x = new JTextField();
         x.setBounds(17, 25, 25, 25);
         butPanel.add(x);
         final JTextField y = new JTextField();
         y.setBounds(60, 25, 25, 25);
         butPanel.add(y);
+
+
+        JLabel addRandomPoints = new JLabel("Добавить рандомное количество точек");
+        addRandomPoints.setBounds(2, 100, 300, 25);
+        butPanel.add(addRandomPoints);
+
+        JLabel N = new JLabel("NUM:");
+        N.setBounds(2, 120, 30, 25);
+        butPanel.add(N);
         final JTextField n = new JTextField();
-        n.setBounds(35, 70, 25, 25);
+        n.setBounds(35, 120, 25, 25);
         butPanel.add(n);
 
-        // рисование тестового круга
-       /*Circle c = new Circle(200,100,200);
-        c.setBounds(0,0,1200,1200);
-        pointpane.add(c);
-        pointpane.repaint();
-        pointpane.revalidate();*/
-
-
-        JButton button1 = new JButton("Добавить точку");
-        button1.setBounds(2, 100, 160, 40);
-        butPanel.add(button1);
-        button1.addActionListener(new ActionListener() {
+        JButton button_add_one = new JButton("Добавить");
+        button_add_one.setBounds(2, 50, 160, 40);
+        butPanel.add(button_add_one);
+        button_add_one.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int X = (!x.getText().equals("") ? Integer.parseInt(x.getText()) : 0);
                 int Y = (!y.getText().equals("") ? Integer.parseInt(y.getText()) : 0);
-                int N = (!n.getText().equals("") ? Integer.parseInt(n.getText()) : 0);
                 if ((X > 0) && (Y > 0)) {
                     Point b = new Point(X, Y);
                     points.add(b);
-                    b.setBounds(b.x, b.y, b.x + 3, b.y + 3);
-                    pointpane.add(b);
-                    pointpane.revalidate();
-                    pointpane.repaint();
-                } else {
-                    if (N > 0) {
-                        for (int i = 0; i < N; i++) {
-                            Point b = new Point((int) (Math.random() * (frame.getWidth() - 250)), (int) (Math.random() * frame.getHeight()));
-                            points.add(b);
-                            b.setBounds(b.x, b.y, b.x + 3, b.y + 3);
-                            pointpane.add(b);
-                            pointpane.revalidate();
-                            pointpane.repaint();
-                        }
-                    }
                 }
-
+                paint_pointpane();
             }
         });
 
-        JButton button2 = new JButton("очистить");
-        button2.setBounds(2, 300, 160, 40);
+        JButton button_add_few = new JButton("Добавить");
+        button_add_few.setBounds(2, 150, 160, 40);
+        butPanel.add(button_add_few);
+        button_add_few.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int N = (!n.getText().equals("") ? Integer.parseInt(n.getText()) : 0);
+                if (N > 0) {
+                    for (int i = 0; i < N; i++) {
+                        Point b = new Point((int) (Math.random() * (frame.getWidth() - 350)) + 50, (int) (Math.random() * (frame.getHeight() - 100))+ 50);
+                        points.add(b);
+                    }
+                }
+                paint_pointpane();
+            }
+        });
+
+
+
+        JButton button2 = new JButton("Очистить");
+        button2.setBounds(2, 350, 160, 40);
         butPanel.add(button2);
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < points.size(); i++) {
-                    while (points.size() > 0) {
-                        int index = points.size() - 1;
-                        Point point = points.remove(index);
-                        pointpane.remove(point);
-                        pointpane.repaint();
-                        pointpane.revalidate();
-                    }
-                }
+                points.clear();
+                c_ans = new Circle(0,0,0);
+                clear_pointpane();
             }
         });
 
 
         JButton button3 = new JButton("Решить задачу");
-        button3.setBounds(2, 250, 160, 40);
+        button3.setBounds(2, 300, 160, 40);
         butPanel.add(button3);
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTextField t = new JTextField(solve());
+                c_ans = solve();
+                JTextField t = new JTextField(c_ans.toString());
                 t.setBounds(20,500,200,100);
                 butPanel.add(t);
-
+                paint_pointpane();
             }
         });
 
         JButton button4 = new JButton("Считать из файла");
-        button4.setBounds(2, 200, 160, 40);
+        button4.setBounds(2, 250, 160, 40);
         butPanel.add(button4);
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                clear_pointpane();
+                c_ans = new Circle(0,0,0);
+
+                points = new Reader().read("in.txt");
                 System.out.println("считано");
+                paint_pointpane();
             }
         });
 
         JButton button5 = new JButton("Записать в файл");
-        button5.setBounds(2, 150, 160, 40);
+        button5.setBounds(2, 200, 160, 40);
         butPanel.add(button5);
         button5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new Reader().write(c_ans, points, "out.txt");
                 System.out.println("записано");
             }
         });
@@ -158,12 +193,7 @@ public class Main {
         });
     }
 
-    public static String solve() {
-        System.out.println("выполнено");
-        for (int i = 0; i < points.size(); i++) {//n
-            points.get(i); //arr[i]
-        }
-
+    public static Circle solve() {
         int max_kolvo = -1;
         int maxi = -1;
         int maxj = -1;
@@ -194,24 +224,15 @@ public class Main {
             }
         }
         //   System.out.println("maxi = " + maxi);
-        Circle c = new Circle(points.get(maxi), points.get(maxj), points.get(maxk));
         if (max_kolvo == -1) {
-
             System.out.println("No such circle");
+            return new Circle(0,0,0);
         } else {
+            Circle c = new Circle(points.get(maxi), points.get(maxj), points.get(maxk));
             System.out.println(max_kolvo);
-
-            c.setBounds(0,0,600,600);
-            pointpane.add(c);
-            pointpane.repaint();
-            pointpane.revalidate();
             System.out.println(c);
-            return c.toString();}
-        return c.toString() ;
-    }
-
-
-}
-} catch (FileNotFoundException e) {
-        e.printStackTrace();
+            System.out.println("выполнено");
+            return c;
         }
+    }
+}

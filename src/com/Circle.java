@@ -1,7 +1,4 @@
-package com.bot;
-
-import com.bot.Point;
-import com.problem.Vector;
+package com;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,12 +82,18 @@ public class Circle extends JPanel{
 
     public void paint(Graphics g){
         g.setColor(Color.red);
-        g.drawOval(cx+r, cy+r, r ,r);
+        g.drawOval(0, 0, 2*r ,2*r);
 
     }
 
     @Override
     public String toString() {
-        return "{" + cx +  ", " + cy + "; " + r + '}';
+        if (r == 0) {
+            return " No such circle";
+        }
+        else {
+            return "{" + cx +  ", " + cy + "; " + r + '}';
+        }
     }
+
 }
