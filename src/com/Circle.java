@@ -11,7 +11,8 @@ public class Circle extends JPanel{
     int cy;
     int r;
 
-
+//Класс Circle,, отвечающий за окружности
+//конструктор, считаем стороны треугольника, вокруг которого описана искомая окружность, считаем его площадь, выражаем через формулу радиус. Пишем уравнение двух прямых проходящих через середины сторон треугольника перпендикулярно сторонам, приравниваем и находдим центр окружности.
       public Circle(Point a1, Point a2, Point a3) {
          int  s1, s2, s3;
          int area;
@@ -54,7 +55,7 @@ public class Circle extends JPanel{
           this.r = r;
     }
 
-    public boolean point_in_side(Point a){
+    public boolean point_in_side(Point a){ // метод, проверяющий, что точка лежит внутри круга. Точка подставляется в уравнение окружности и проверяется, что выражение меньше или равно нулю
         if(((this.cx - a.x)*(this.cx - a.x) +(this.cy - a.y)*(this.cy - a.y)- this.r*this.r)<=0){
             return true;
         }
@@ -63,7 +64,7 @@ public class Circle extends JPanel{
         }
     }
 
-    static public boolean isAccesible(Point a1, Point a2, Point a3){
+    static public boolean isAccesible(Point a1, Point a2, Point a3){ //метод, проверяющий (во избежании ошибок) чтоплощадь треугольника  не ноль
         int  s1, s2, s3;
         int area;
         int p;

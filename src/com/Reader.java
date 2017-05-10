@@ -8,9 +8,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class Reader {
+public class Reader { //Класс, отвечающий за считку и вывод данных. Очень удобен, тк позволяет не думать вне себя о том как хранятся, записываются и выводятся данные
 
-    public ArrayList<Point> read(String filename) {
+    public ArrayList<Point> read(String filename) { // точки считываются в массив. в элемент массива добавляется координата х и у
         ArrayList<Point> list = new ArrayList<Point>();
         try {
             Scanner fin = new Scanner(new File(filename));

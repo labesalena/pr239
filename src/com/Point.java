@@ -15,7 +15,7 @@ public class Point extends JPanel {
         g.fillRect(0,0,3,3);
     }
 
-    public boolean we_are_triangle(Point a1,Point a2){
+    public boolean we_are_triangle(Point a1,Point a2){ // проверка что три точки не лежат на одной прямой, пишется уравнение прямой через две точки, подставляется третья, смотрим, что равенство не равно нулю
         if ((a1.y-a2.y)*this.x+(a2.x-a1.x)*this.y+(a1.x*a2.y-a2.x*a1.y) == 0){
             return false;
         }

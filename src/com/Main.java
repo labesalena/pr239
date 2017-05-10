@@ -84,7 +84,7 @@ public class Main{
         final JTextField n = new JTextField();
         n.setBounds(35, 120, 25, 25);
         butPanel.add(n);
-        
+
 
         JButton button_add_one = new JButton("Добавить");
         button_add_one.setBounds(2, 50, 160, 40);
@@ -195,11 +195,12 @@ public class Main{
     }
 
     public static Circle solve() {
-        int max_kolvo = -1;
+        int max_kolvo = -1; // переменная, в которой будет лежать максимальное количество точек лежащее внутри окружности
         int maxi = -1;
         int maxj = -1;
         int maxk = -1;
-        int l = points.size();
+        int l = points.size(); // количество точек
+        // прохожу тремя циклами перебираю все точки, если они не лежал на одной прямой то прохожусь по всем точкам еще раз и если они лежат внутри заданной окружности то увеличиваюю значение sum_kolvo
 
         for (int i = 0; i < l - 2; i++) {
             for (int j = i + 1; j < l - 1; j++) {
@@ -225,6 +226,7 @@ public class Main{
             }
         }
         //   System.out.println("maxi = " + maxi);
+        //если все точки лежат на одной прямой, вывожу что такой окружности нет, в другом случае возвращаю нужную окружность
         if (max_kolvo == -1) {
             System.out.println("No such circle");
             return new Circle(0,0,0);
